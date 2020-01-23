@@ -10,5 +10,7 @@ By we can make more than 10 different combinations and from parameter tuning we 
 This code supports dense matrics only. For sparse matrix (DOK, LIL) libsvm_sparse will be added soon. 
 
 Test1: Simple example of SVM and compared all the parameters in both (my_svm and sklearn)
+
 Test2: Comparison of both models for a large number of inputs. 
+
 Test3: Real world problems and model comparison.
