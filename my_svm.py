@@ -11,7 +11,6 @@ try:
     f1 = libsvm.set_verbosity_wrap
     del f1
 except:
-    print("Happened")
     import _libsvm as libsvm
 
 from support import check_X_y, check_random_state, check_array, safe_sparse_dot, check_is_fitted, column_or_1d
@@ -388,6 +387,4 @@ class svm:
 def print_dict(my_dict):
     print("Data:")
     [print(i, ": ", my_dict[i]) for i in my_dict]
-    
-if __name__ == "__main__":
-    print(libsvm.set_verbosity_wrap, libsvm.fit)
+
