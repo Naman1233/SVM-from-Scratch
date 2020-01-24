@@ -4,7 +4,15 @@ Reference: libsvm & sklern official documentation
 '''
 import numpy as np
 import scipy.sparse as sp
-import libsvm#, libsvm_sparse
+import warnings
+#just a check
+try:
+    import libsvm
+    f1 = libsvm.set_verbosity_wrap
+    del f1
+except:
+    print("Happened")
+    import _libsvm as libsvm
 
 from support import check_X_y, check_random_state, check_array, safe_sparse_dot, check_is_fitted, column_or_1d
 from support import check_classification_targets, compute_class_weight
@@ -147,8 +155,8 @@ class svm:
                 raise ValueError("X.shape[0] should be equal to X.shape[1]")
             kernel = "precomputed"
 
-        libsvm.set_verbosity_wrap(self.verbose)
-
+        #libsvm.set_verbosity_wrap(self.verbose)
+        
         self.support_, self.support_vectors_, self.n_support_, \
             self.dual_coef_, self.intercept_, self.probA_, \
             self.probB_, self.fit_status_ = libsvm.fit(
@@ -254,7 +262,7 @@ class svm:
             self.support_vectors_.indices,
             self.support_vectors_.indptr,
             self._dual_coef_.data, self._intercept_,
-            LIBSVM_IMPL.index(self._impl), kernel_type,
+            0, kernel_type,
             self.degree, self._gamma, self.coef0, self.tol,
             C, self.class_weight_,
             self.nu, self.epsilon, self.shrinking,
@@ -298,7 +306,7 @@ class svm:
             X, self.support_, self.support_vectors_, self.n_support_,
             self._dual_coef_, self._intercept_,
             self.probA_, self.probB_,
-            svm_type=LIBSVM_IMPL.index(self._impl),
+            svm_type=0,
             kernel=kernel, degree=self.degree, cache_size=self.cache_size,
             coef0=self.coef0, gamma=self._gamma)
     
@@ -381,5 +389,5 @@ def print_dict(my_dict):
     print("Data:")
     [print(i, ": ", my_dict[i]) for i in my_dict]
     
-
-    
+if __name__ == "__main__":
+    print(libsvm.set_verbosity_wrap, libsvm.fit)
