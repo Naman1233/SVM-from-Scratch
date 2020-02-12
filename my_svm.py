@@ -5,8 +5,8 @@ Reference: libsvm & sklern official documentation
 import numpy as np
 import scipy.sparse as sp
 import warnings
-from sklearn.svm import _libsvm as libsvm
-from sklearn.svm import _libsvm_sparse as libsvm_sparse
+from sklearn.svm import libsvm
+from sklearn.svm import libsvm_sparse
 
 from support import check_X_y, check_random_state, check_array, safe_sparse_dot, check_is_fitted, column_or_1d
 from support import check_classification_targets, compute_class_weight
